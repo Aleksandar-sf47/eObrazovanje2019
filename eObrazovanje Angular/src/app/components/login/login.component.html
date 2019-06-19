@@ -1,0 +1,25 @@
+<div class="loginForm container">
+  <h2 class="loginTitle">Prijava</h2>
+  <div class="usernameForm">
+    <label>username</label><br />
+    <input
+      class="form-control"
+      type="text"
+      name="username"
+      [(ngModel)]="username"
+    />
+  </div>
+  <div class="passwordForm">
+    <label for>password</label><br />
+    <input
+      class="form-control"
+      type="password"
+      name="password"
+      [(ngModel)]="password"
+    />
+  </div>
+  <br />
+  <div class="buttonForm">
+    <button class="btn btn-success loginBtn" (click)="login()">Sign in</button>
+  </div>
+</div>
