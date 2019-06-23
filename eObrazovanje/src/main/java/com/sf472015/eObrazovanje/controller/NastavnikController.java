@@ -19,7 +19,7 @@ import com.sf472015.eObrazovanje.dto.NastavnikDTO;
 import com.sf472015.eObrazovanje.service.NastavnikService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "api/nastavnici")
 public class NastavnikController {
 	
@@ -36,7 +36,7 @@ public class NastavnikController {
 		return new ResponseEntity<NastavnikDTO>(nServ.findById(id), HttpStatus.OK);
 	}
 	
-	@PostMapping("/")
+	@PostMapping
 	public ResponseEntity<NastavnikDTO> postNastavnik(@RequestBody NastavnikDTO nDTO){
 		nServ.save(nDTO);
 		return new ResponseEntity<NastavnikDTO>(nDTO, HttpStatus.CREATED);

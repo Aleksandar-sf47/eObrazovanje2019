@@ -38,7 +38,7 @@ public class UcenikController {
 		return new ResponseEntity<UcenikDTO>(uServ.findById(id), HttpStatus.OK);
 	}
 	
-	@PostMapping("/")
+	@PostMapping
 	public ResponseEntity<UcenikDTO> postUcenik(@RequestBody UcenikDTO uDTO){
 		uServ.save(uDTO);
 		return new ResponseEntity<UcenikDTO>(uDTO, HttpStatus.CREATED);

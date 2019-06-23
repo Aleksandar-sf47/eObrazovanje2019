@@ -35,7 +35,7 @@ public class PredavanjeController {
 		return new ResponseEntity<PredavanjeDTO>(pServ.findById(id), HttpStatus.OK);
 	}
 	
-	@PostMapping("/")
+	@PostMapping
 	public ResponseEntity<PredavanjeDTO> postPredavanje(@RequestBody PredavanjeDTO pDTO){
 		pServ.save(pDTO);
 		return new ResponseEntity<PredavanjeDTO>(pDTO, HttpStatus.CREATED);

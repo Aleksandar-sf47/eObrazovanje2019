@@ -7,13 +7,12 @@ import { AdminService } from "src/app/services/admin/admin.service";
   styleUrls: ["./admin.component.css"]
 })
 export class AdminComponent implements OnInit {
-  constructor(private adminService: AdminService) {}
+ 
+  constructor() {}
 
-  nastavnici = [];
+ 
 
   ngOnInit() {
-    this.adminService.getNastavnici().subscribe(res => {
-      this.nastavnici = res;
-    });
+   
   }
 }
