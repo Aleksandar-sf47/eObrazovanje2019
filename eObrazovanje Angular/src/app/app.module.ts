@@ -10,9 +10,16 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 import { HttpClientModule } from "@angular/common/http";
 import { NastavnikComponent } from './components/nastavnik/nastavnik.component';
 import { NastavnikDodajComponent } from './components/nastavnik-dodaj/nastavnik-dodaj.component';
+import { NastavnikDetaljiComponent } from './components/nastavnik-detalji/nastavnik-detalji.component';
+import { NastavnikEditComponent } from './components/nastavnik-edit/nastavnik-edit.component';
+import { UceniciComponent } from './components/ucenici/ucenici.component';
+import { UceniciDetaljiComponent } from './components/ucenici-detalji/ucenici-detalji.component';
+import { UcenikDodajComponent } from './components/ucenik-dodaj/ucenik-dodaj.component';
+import { UcenikEditComponent } from './components/ucenik-edit/ucenik-edit.component';
+
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, AdminComponent, NavbarComponent, NastavnikComponent, NastavnikDodajComponent],
+  declarations: [AppComponent, LoginComponent, AdminComponent, NavbarComponent, NastavnikComponent, NastavnikDodajComponent, NastavnikDetaljiComponent, NastavnikEditComponent, UceniciComponent, UceniciDetaljiComponent, UcenikDodajComponent, UcenikEditComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]

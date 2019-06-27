@@ -18,6 +18,6 @@
   <div></div>
   <button class="btn btn-primary active" role="button" aria-pressed="true" (click)="showNastavnikDodaj()">Dodaj</button>
 </div>
-<div *ngIf="nastavnikDodaj || nastavnik != null"> 
-  <app-nastavnik-dodaj [nastavnik] = "nastavnik"></app-nastavnik-dodaj>
+<div *ngIf="nastavnikDodaj"> 
+  <app-nastavnik-dodaj (eeNewNastavnik)='newNastavnik($event)'></app-nastavnik-dodaj>
 </div>

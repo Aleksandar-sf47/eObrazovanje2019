@@ -11,7 +11,7 @@ export class NastavnikComponent implements OnInit {
 
   constructor(private nastavnikService : NastavnikService) { }
   nastavnici = [];
-  nastavnikDodaj : boolean = false;
+  nastavnikDodaj : boolean = false; //sluzi za prikaz forme dodavanje nastavnika
   nastavnik;
 
   ngOnInit() {
@@ -28,5 +28,11 @@ export class NastavnikComponent implements OnInit {
   selectedNastavnik(n){
     console.log(n);
     this.nastavnik = n;
+    window.location.href = "nastavnik-details/" + this.nastavnik.id;
+  }
+
+  newNastavnik(n){
+    this.nastavnici.push(n);
+    this.nastavnikDodaj = false; //zatvara formu za dodavanje nastavnika
   }
 }

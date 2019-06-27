@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NastavnikService } from 'src/app/services/nastavnik/nastavnik.service';
+
 
 @Component({
   selector: 'app-nastavnik-dodaj',
@@ -8,7 +9,9 @@ import { NastavnikService } from 'src/app/services/nastavnik/nastavnik.service';
 })
 export class NastavnikDodajComponent implements OnInit {
 
-  @Input() nastavnik;
+  @Output() eeNewNastavnik : any = new EventEmitter();
+
+  
 
   nastavnikDTO = {
     ime : "",
@@ -25,10 +28,14 @@ export class NastavnikDodajComponent implements OnInit {
   }
 
   submit(){
-    console.log(this.nastavnikDTO);
     this.nServ.postNastavnik(this.nastavnikDTO).subscribe(res => {
       console.log(res);
+      this.newNastavnik();
     });
   }
 
+  newNastavnik(){
+    this.eeNewNastavnik.emit(this.nastavnikDTO);
+
+  }
 }

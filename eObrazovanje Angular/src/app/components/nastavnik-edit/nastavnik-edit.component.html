@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>Edit</h2>
+    <div class="emailForm">
+        <label>email</label><br/>
+        <input class="form-control" type="text" name="email" [(ngModel)] = "nastavnikDTO.email"/>
+    </div>
+    <div class="telefonForm">
+        <label>telefon</label><br/>
+        <input class="form-control" type="text" name="telefon" [(ngModel)] = "nastavnikDTO.telefon"/>
+    </div>
+    <div class="usernameForm">
+        <label>korisnicko ime</label><br/>
+        <input class="form-control" type="text" name="username" [(ngModel)] = "nastavnikDTO.korisnickoIme"/>
+    </div>
+    <div class="passwordForm">
+        <label>sifra</label><br/>
+        <input class="form-control" type="text" name="password" [(ngModel)] = "nastavnikDTO.sifra"/>
+    </div><br/>
+    <div class="buttonForm">
+        <button class="btn btn-success submitBtn" (click)="submit()">Submit</button>
+    </div>
+</div>

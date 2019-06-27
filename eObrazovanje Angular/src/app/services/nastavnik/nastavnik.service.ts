@@ -14,7 +14,19 @@ export class NastavnikService {
     return this.http.get(this.API);
   }
 
+  getNastavnik(id) : Observable<any>{
+    return this.http.get(this.API + "/" + id);
+  }
+
   postNastavnik(nastavnikDTO) : Observable<any>{
     return this.http.post(this.API, nastavnikDTO);
+  }
+
+  putNastavnik(id ,nastavnikDTO) : Observable<any>{
+    return this.http.put(this.API + "/" + id, nastavnikDTO);
+  }
+
+  deleteNastavnik(id) : Observable<any>{
+    return this.http.delete(this.API + "/" + id);
   }
 }

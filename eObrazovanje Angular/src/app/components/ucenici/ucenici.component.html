@@ -1,0 +1,26 @@
+<div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Br. indeksa</th>
+          <th scope="col">Ime</th>
+          <th scope="col">Prezime</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of ucenici" (click)="selectedUcenik(u)">
+          <td>{{ u.brojIndeksa }}</td>
+          <td>{{ u.ime }}</td>
+          <td>{{ u.prezime }}</td>
+          <td>{{ u.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <button class="btn btn-primary active" role="button" aria-pressed="true" (click)="showUcenikDodaj()">Dodaj</button>
+    </div>
+  </div>
+  <div *ngIf="ucenikDodaj"> 
+    <app-ucenik-dodaj (eeNewUcenik)='newUcenik($event)'></app-ucenik-dodaj>
+  </div>
