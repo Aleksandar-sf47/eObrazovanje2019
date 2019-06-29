@@ -35,7 +35,7 @@ export class NastavnikDodajComponent implements OnInit {
   }
 
   newNastavnik(){
-    this.eeNewNastavnik.emit(this.nastavnikDTO);
+    this.eeNewNastavnik.emit();
 
   }
 }

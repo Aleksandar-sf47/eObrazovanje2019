@@ -22,14 +22,14 @@ export class NastavnikEditComponent implements OnInit {
     });
   }
 
-  editNastavnik(nastavnikDTO){
-    this.eeEditNastavnik.emit(nastavnikDTO);
+  editNastavnik(){
+    this.eeEditNastavnik.emit();
   }
 
   submit(){
     this.nServ.putNastavnik(this.id, this.nastavnikDTO).subscribe(res=>{
       console.log(res);
-      this.eeEditNastavnik.emit(res);
+      this.eeEditNastavnik.emit();
     });
   }
 

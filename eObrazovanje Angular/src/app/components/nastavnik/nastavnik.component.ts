@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { AdminService } from 'src/app/services/admin/admin.service';
 import { NastavnikService } from 'src/app/services/nastavnik/nastavnik.service';
 
@@ -7,7 +7,7 @@ import { NastavnikService } from 'src/app/services/nastavnik/nastavnik.service';
   templateUrl: './nastavnik.component.html',
   styleUrls: ['./nastavnik.component.css']
 })
-export class NastavnikComponent implements OnInit {
+export class NastavnikComponent implements OnInit, OnChanges {
 
   constructor(private nastavnikService : NastavnikService) { }
   nastavnici = [];
@@ -15,6 +15,12 @@ export class NastavnikComponent implements OnInit {
   nastavnik;
 
   ngOnInit() {
+    this.nastavnikService.getNastavnici().subscribe(res => {
+      this.nastavnici = res;
+    });
+  }
+
+  ngOnChanges(){
     this.nastavnikService.getNastavnici().subscribe(res => {
       this.nastavnici = res;
     });
@@ -31,8 +37,8 @@ export class NastavnikComponent implements OnInit {
     window.location.href = "nastavnik-details/" + this.nastavnik.id;
   }
 
-  newNastavnik(n){
-    this.nastavnici.push(n);
+  newNastavnik(){
     this.nastavnikDodaj = false; //zatvara formu za dodavanje nastavnika
+    this.ngOnChanges();
   }
 }

@@ -34,7 +34,7 @@ public class PredmetController {
 		return new ResponseEntity<PredmetDTO>(pServ.findById(id), HttpStatus.OK);
 	}
 	
-	@PostMapping("/")
+	@PostMapping
 	public ResponseEntity<PredmetDTO> postPredmeti(@RequestBody PredmetDTO pDTO){
 		pServ.save(pDTO);
 		return new ResponseEntity<PredmetDTO>(pDTO, HttpStatus.CREATED);

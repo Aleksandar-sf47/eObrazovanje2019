@@ -1,0 +1,10 @@
+<div class="container">
+  <h2>Predmet</h2>
+  <div class="nameForm">
+      <label>Predmet</label><br/>
+      <input class="form-control" type="text" name="subject" [(ngModel)] = "predmetDTO.naziv"/> 
+  </div>
+  <div class="buttonForm">
+    <button class="btn btn-success submitBtn" (click)="submit()">Submit</button>
+  </div>
+</div>

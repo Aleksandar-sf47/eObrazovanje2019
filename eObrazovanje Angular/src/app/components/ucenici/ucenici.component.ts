@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { UcenikService } from 'src/app/services/ucenik/ucenik.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { UcenikService } from 'src/app/services/ucenik/ucenik.service';
   templateUrl: './ucenici.component.html',
   styleUrls: ['./ucenici.component.css']
 })
-export class UceniciComponent implements OnInit {
+export class UceniciComponent implements OnInit, OnChanges {
   ucenici = [];
   ucenik;
   ucenikDodaj : boolean = false; //sluzi za prikaz forme dodavanje ucenika
@@ -14,6 +14,12 @@ export class UceniciComponent implements OnInit {
   constructor(private uServ : UcenikService) { }
 
   ngOnInit() {
+    this.uServ.getUcenici().subscribe(res=>{
+      this.ucenici = res;
+    });
+  }
+
+  ngOnChanges(){
     this.uServ.getUcenici().subscribe(res=>{
       this.ucenici = res;
     });
@@ -28,8 +34,8 @@ export class UceniciComponent implements OnInit {
     this.ucenikDodaj = true;
   }
 
-  newUcenik(u){
-    this.ucenici.push(u);
+  newUcenik(){
     this.ucenikDodaj = false;
+    this.ngOnChanges();
   }
 }

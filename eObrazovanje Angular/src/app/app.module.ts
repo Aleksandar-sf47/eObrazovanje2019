@@ -16,10 +16,12 @@ import { UceniciComponent } from './components/ucenici/ucenici.component';
 import { UceniciDetaljiComponent } from './components/ucenici-detalji/ucenici-detalji.component';
 import { UcenikDodajComponent } from './components/ucenik-dodaj/ucenik-dodaj.component';
 import { UcenikEditComponent } from './components/ucenik-edit/ucenik-edit.component';
+import { PredmetComponent } from './components/predmet/predmet.component';
+import { PredmetDodajComponent } from './components/predmet-dodaj/predmet-dodaj.component';
 
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, AdminComponent, NavbarComponent, NastavnikComponent, NastavnikDodajComponent, NastavnikDetaljiComponent, NastavnikEditComponent, UceniciComponent, UceniciDetaljiComponent, UcenikDodajComponent, UcenikEditComponent],
+  declarations: [AppComponent, LoginComponent, AdminComponent, NavbarComponent, NastavnikComponent, NastavnikDodajComponent, NastavnikDetaljiComponent, NastavnikEditComponent, UceniciComponent, UceniciDetaljiComponent, UcenikDodajComponent, UcenikEditComponent, PredmetComponent, PredmetDodajComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]

@@ -21,14 +21,14 @@ export class UcenikEditComponent implements OnInit {
     });
   }
 
-  editUcenik(ucenikDTO){
-    this.eeEdidUcenik.emit(ucenikDTO);
+  editUcenik(){
+    this.eeEdidUcenik.emit();
   }
 
   submit(){
     this.uServ.putUcenik(this.id, this.ucenikDTO).subscribe(res=>{
       console.log(res);
-      this.eeEdidUcenik.emit(res);
+      this.eeEdidUcenik.emit();
     });
   }
 }

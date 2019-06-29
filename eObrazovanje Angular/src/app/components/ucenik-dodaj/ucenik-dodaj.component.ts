@@ -31,11 +31,11 @@ export class UcenikDodajComponent implements OnInit {
   submit(){
     this.uServ.postUcenik(this.ucenikDTO).subscribe(res=>{
         console.log(res);
-        this.newUcenik(this.ucenikDTO);
+        this.newUcenik();
     });
   }
 
-  newUcenik(ucenikDTO){
-    this.eeNewUcenik.emit(ucenikDTO);
+  newUcenik(){
+    this.eeNewUcenik.emit();
   }
 }
