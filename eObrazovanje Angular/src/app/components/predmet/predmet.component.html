@@ -7,7 +7,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let p of predmeti" (click)="selectedPredmet(p)">
-        <td>{{ p.naziv }}</td>
+        <td (click)="sendToDetails()">{{ p.naziv }}</td>
         <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModalCenter">Delete</button></td>
       </tr>
     </tbody>

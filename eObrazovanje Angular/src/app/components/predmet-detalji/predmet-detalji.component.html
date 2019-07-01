@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+        <div class="detailsPredmet container-fluid">
+            <div class="row">
+                <div class="col-sm-4">
+                    <label>ID</label>
+                </div>
+                <div class="col-sm-2">
+                  <p>{{predmet.id}}</p>
+                </div>  
+            </div>
+          <div class="row">
+              <div class="col-sm-4">
+                  <label>Ime</label>
+              </div>
+              <div class="col-sm-2">
+                <p>{{predmet.naziv}}</p>
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!--Predavanje-->
+  <div class='predavanje'>
+    <h2>Prdavanje</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Ime</th>
+          <th scope="col">Prezime</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let n of nastavnici" (click)="selectedNastavnik(n)">
+          <td>{{ n.ime }}</td>
+          <td>{{ n.prezime }}</td>
+          <td>{{ n.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--Pohadjanje-->
+  <h2>Pohadjanje</h2>
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Br. indeksa</th>
+          <th scope="col">Ime</th>
+          <th scope="col">Prezime</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of ucenici" (click)="selectedUcenik(u)">
+          <td>{{ u.brojIndeksa }}</td>
+          <td>{{ u.ime }}</td>
+          <td>{{ u.prezime }}</td>
+          <td>{{ u.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

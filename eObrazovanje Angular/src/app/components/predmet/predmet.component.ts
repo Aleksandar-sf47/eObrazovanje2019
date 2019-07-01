@@ -11,6 +11,7 @@ export class PredmetComponent implements OnInit, OnChanges {
   predmeti = [];
   predmetDodaj : boolean = false; //sluzi za prikaz forme dodavanje predmeta
   predmet;
+  
 
   constructor(private pServ : PredmetService) { }
 
@@ -32,6 +33,10 @@ export class PredmetComponent implements OnInit, OnChanges {
 
   selectedPredmet(p){
     this.predmet = p;
+  }
+
+  sendToDetails(){
+    window.location.href = "predmet-details/" + this.predmet.id;
   }
 
   btnDeleteClick(){
