@@ -3,6 +3,7 @@ package com.sf472015.eObrazovanje.dto;
 import java.io.Serializable;
 import java.util.Set;
 
+import com.sf472015.eObrazovanje.model.Korisnik;
 import com.sf472015.eObrazovanje.model.Nastavnik;
 import com.sf472015.eObrazovanje.model.Predavanje;
 
@@ -14,7 +15,7 @@ public class NastavnikDTO  implements Serializable{
 	private String jmbg;
 	private String email;
 	private String telefon;
-	private String korisnickoIme;
+	private String kIme;
 	private String sifra;
 	private Set<Predavanje> listaPredavanjaNastavnika;
 	
@@ -22,16 +23,33 @@ public class NastavnikDTO  implements Serializable{
 		super();
 	}
 
-	public NastavnikDTO(Nastavnik n) {
+	
+	
+	public NastavnikDTO(Long id, String ime, String prezime, String jmbg, String email, String telefon, String kIme,
+			String sifra, Set<Predavanje> listaPredavanjaNastavnika) {
 		super();
+		this.id = id;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.jmbg = jmbg;
+		this.email = email;
+		this.telefon = telefon;
+		this.kIme = kIme;
+		this.sifra = sifra;
+		this.listaPredavanjaNastavnika = listaPredavanjaNastavnika;
+	}
+
+
+
+	public NastavnikDTO(Nastavnik n) {
 		this.id = n.getId();
 		this.ime = n.getIme();
 		this.prezime = n.getPrezime();
 		this.jmbg = n.getJmbg();
 		this.email = n.getEmail();
 		this.telefon = n.getTelefon();
-		this.korisnickoIme = n.getKorisnickoIme();
-		this.sifra = n.getSifra();
+		this.kIme = n.getKorisnik().getKorisnickoIme();
+		this.sifra = n.getKorisnik().getSifra();
 		this.listaPredavanjaNastavnika = n.getListaPredavanjaNastavnika();
 	}
 
@@ -83,21 +101,31 @@ public class NastavnikDTO  implements Serializable{
 		this.telefon = telefon;
 	}
 
-	public String getKorisnickoIme() {
-		return korisnickoIme;
+	
+
+	public String getkIme() {
+		return kIme;
 	}
 
-	public void setKorisnickoIme(String korisnickoIme) {
-		this.korisnickoIme = korisnickoIme;
+
+
+	public void setkIme(String kIme) {
+		this.kIme = kIme;
 	}
+
+
 
 	public String getSifra() {
 		return sifra;
 	}
 
+
+
 	public void setSifra(String sifra) {
 		this.sifra = sifra;
 	}
+
+
 
 	public Set<Predavanje> getListaPredavanjaNastavnika() {
 		return listaPredavanjaNastavnika;
@@ -106,6 +134,7 @@ public class NastavnikDTO  implements Serializable{
 	public void setListaPredavanjaNastavnika(Set<Predavanje> listaPredavanjaNastavnika) {
 		this.listaPredavanjaNastavnika = listaPredavanjaNastavnika;
 	}
+
 	
 	
 	

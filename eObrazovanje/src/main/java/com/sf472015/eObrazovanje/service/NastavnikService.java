@@ -1,13 +1,17 @@
 package com.sf472015.eObrazovanje.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sf472015.eObrazovanje.dto.NastavnikDTO;
+import com.sf472015.eObrazovanje.model.Korisnik;
 import com.sf472015.eObrazovanje.model.Nastavnik;
+import com.sf472015.eObrazovanje.model.Uloga;
 import com.sf472015.eObrazovanje.repo.NastavnikRepository;
 
 @Service
@@ -15,6 +19,13 @@ public class NastavnikService implements NastavnikServiceInterface{
 
 	@Autowired
 	NastavnikRepository nRepo;
+
+	@Autowired
+	KorisnikService kServ;
+	
+	@Autowired
+	UlogaService uServ;
+	
 	
 	@Override
 	public NastavnikDTO findById(Long id) {
@@ -31,7 +42,11 @@ public class NastavnikService implements NastavnikServiceInterface{
 
 	@Override
 	public Nastavnik save(NastavnikDTO nDTO) {
-		Nastavnik n = new Nastavnik(nDTO); 
+		Set<Uloga> uloge = new HashSet<Uloga>();
+		Uloga u = uServ.getUlogaByName("NASTAVNIK");
+		uloge.add(u);
+		Korisnik k = kServ.save(nDTO.getkIme(), nDTO.getSifra(), uloge);
+		Nastavnik n = new Nastavnik(nDTO, k); 
 		return nRepo.save(n);
 	}
 
@@ -46,8 +61,8 @@ public class NastavnikService implements NastavnikServiceInterface{
 		n.setIme(nDTO.getIme());
 		n.setPrezime(nDTO.getPrezime());
 		n.setJmbg(nDTO.getJmbg());
-		n.setKorisnickoIme(nDTO.getKorisnickoIme());
-		n.setSifra(nDTO.getSifra());
+		n.getKorisnik().setKorisnickoIme(nDTO.getkIme());
+		n.getKorisnik().setSifra(nDTO.getSifra());
 		n.setEmail(nDTO.getEmail());
 		n.setTelefon(nDTO.getTelefon());
 		n.setListaPredavanjaNastavnika(nDTO.getListaPredavanjaNastavnika());

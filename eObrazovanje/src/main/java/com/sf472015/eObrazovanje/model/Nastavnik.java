@@ -9,7 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.sf472015.eObrazovanje.dto.NastavnikDTO;
@@ -38,11 +40,9 @@ public class Nastavnik {
 	@Column(name="nastavnik_telefon", unique=false, nullable=false)
 	private String telefon;
 	
-	@Column(name="nastavnik_korisnickoIme", unique=false, nullable=false)
-	private String korisnickoIme;
-	
-	@Column(name="nastavnik_sifra", unique=false, nullable=false)
-	private String sifra;
+	@OneToOne
+	@JoinColumn(name="korisnik_id", referencedColumnName="korisnik_id")
+	private Korisnik korisnik;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="nastavnik")
 	private Set<Predavanje> listaPredavanjaNastavnika;
@@ -52,8 +52,8 @@ public class Nastavnik {
 		
 	}
 
-	public Nastavnik(Long id, String ime, String prezime, String jmbg, String email, String telefon,
-			String korisnickoIme, String sifra, Set<Predavanje> listaPredavanjaNastavnika) {
+	public Nastavnik(Long id, String ime, String prezime, String jmbg, String email, String telefon, Korisnik korisnik,
+			Set<Predavanje> listaPredavanjaNastavnika) {
 		super();
 		this.id = id;
 		this.ime = ime;
@@ -61,25 +61,10 @@ public class Nastavnik {
 		this.jmbg = jmbg;
 		this.email = email;
 		this.telefon = telefon;
-		this.korisnickoIme = korisnickoIme;
-		this.sifra = sifra;
+		this.korisnik = korisnik;
 		this.listaPredavanjaNastavnika = listaPredavanjaNastavnika;
 	}
 
-	public Nastavnik(NastavnikDTO nDTO) {
-		super();
-		this.id = nDTO.getId();
-		this.ime = nDTO.getIme();
-		this.prezime = nDTO.getPrezime();
-		this.jmbg = nDTO.getJmbg();
-		this.email = nDTO.getEmail();
-		this.telefon = nDTO.getTelefon();
-		this.korisnickoIme = nDTO.getKorisnickoIme();
-		this.sifra = nDTO.getSifra();
-		this.listaPredavanjaNastavnika = nDTO.getListaPredavanjaNastavnika();
-	}
-	
-	//getter and setter 
 	public Long getId() {
 		return id;
 	}
@@ -128,20 +113,12 @@ public class Nastavnik {
 		this.telefon = telefon;
 	}
 
-	public String getKorisnickoIme() {
-		return korisnickoIme;
+	public Korisnik getKorisnik() {
+		return korisnik;
 	}
 
-	public void setKorisnickoIme(String korisnickoIme) {
-		this.korisnickoIme = korisnickoIme;
-	}
-
-	public String getSifra() {
-		return sifra;
-	}
-
-	public void setSifra(String sifra) {
-		this.sifra = sifra;
+	public void setKorisnik(Korisnik korisnik) {
+		this.korisnik = korisnik;
 	}
 
 	public Set<Predavanje> getListaPredavanjaNastavnika() {
@@ -150,6 +127,17 @@ public class Nastavnik {
 
 	public void setListaPredavanjaNastavnika(Set<Predavanje> listaPredavanjaNastavnika) {
 		this.listaPredavanjaNastavnika = listaPredavanjaNastavnika;
+	}
+
+	public Nastavnik(NastavnikDTO nDTO, Korisnik k) {
+		this.id = nDTO.getId();
+		this.ime = nDTO.getIme();
+		this.prezime = nDTO.getPrezime();
+		this.jmbg = nDTO.getJmbg();
+		this.email = nDTO.getEmail();
+		this.telefon = nDTO.getTelefon();
+		this.korisnik = k;
+		this.listaPredavanjaNastavnika = nDTO.getListaPredavanjaNastavnika();
 	}
 	
 	
