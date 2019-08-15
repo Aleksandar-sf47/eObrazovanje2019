@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.sf472015.eObrazovanje.dto.NastavnikDTO;
@@ -26,6 +27,9 @@ public class NastavnikService implements NastavnikServiceInterface{
 	@Autowired
 	UlogaService uServ;
 	
+	@Autowired
+	PasswordEncoder encoder;
+	
 	
 	@Override
 	public NastavnikDTO findById(Long id) {
@@ -45,7 +49,7 @@ public class NastavnikService implements NastavnikServiceInterface{
 		Set<Uloga> uloge = new HashSet<Uloga>();
 		Uloga u = uServ.getUlogaByName("NASTAVNIK");
 		uloge.add(u);
-		Korisnik k = kServ.save(nDTO.getkIme(), nDTO.getSifra(), uloge);
+		Korisnik k = kServ.save(nDTO.getkIme(),encoder.encode(nDTO.getSifra()), uloge);
 		Nastavnik n = new Nastavnik(nDTO, k); 
 		return nRepo.save(n);
 	}

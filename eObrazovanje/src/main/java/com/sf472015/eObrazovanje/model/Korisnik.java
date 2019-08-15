@@ -35,8 +35,7 @@ public class Korisnik {
 	inverseJoinColumns=@JoinColumn(name="uloga_id"))
 	private Set<Uloga> uloge = new HashSet<>();
 
-	@OneToOne(mappedBy="korisnik")
-	private Nastavnik n;
+
 	
 	public Korisnik(String korisnickoIme, String sifra, Set<Uloga> uloge) {
 		super();
