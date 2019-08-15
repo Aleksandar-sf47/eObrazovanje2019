@@ -45,8 +45,8 @@ public class UcenikDTO implements Serializable {
 		this.jmbg = u.getPrezime();
 		this.email = u.getEmail();
 		this.telefon = u.getTelefon();
-		this.korisnickoIme = u.getKorisnickoIme();
-		this.sifra = u.getSifra();
+		this.korisnickoIme = u.getKorisnik().getKorisnickoIme();
+		this.sifra = u.getKorisnik().getSifra();
 		this.novcanik = u.getNovcanik();
 		this.listaDokumenataStudenta = u.getListaDokumenataStudenta();
 		this.listaPohadjanjaStudenta = u.getListaPohadjanjaStudenta();

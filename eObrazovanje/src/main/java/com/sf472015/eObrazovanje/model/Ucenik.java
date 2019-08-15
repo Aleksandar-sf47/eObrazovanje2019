@@ -12,7 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.websocket.OnOpen;
 
 import com.sf472015.eObrazovanje.dto.UcenikDTO;
 
@@ -45,12 +47,6 @@ public class Ucenik {
 	@Column(name="ucenik_telefon", unique=false, nullable=false)
 	private String telefon;
 	
-	@Column(name="ucenik_korisnickoIme", unique=false, nullable=false)
-	private String korisnickoIme;
-	
-	@Column(name="ucenik_sifra", unique=false, nullable=false)
-	private String sifra;
-	
 	@Column(name="novcanik", unique=false, nullable=true)
 	private Double novcanik;
 
@@ -68,16 +64,21 @@ public class Ucenik {
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="ucenik")
 	private Set<Uplate> listaUplataStudenta;
+	
+	@OneToOne
+	@JoinColumn(name="korisnik_id", referencedColumnName="korisnik_id")
+	private Korisnik korisnik;
 
 	
 	//constructor
 	public Ucenik() {
 	}
 	
+	
+	
 	public Ucenik(Long id, String brojIndeksa, String ime, String prezime, String jmbg, String email, String telefon,
-			String korisnickoIme, String sifra, Double novcanik, Set<DokumentaStudenta> listaDokumenataStudenta,
-			Set<Pohadjanje> listaPohadjanjaStudenta, Set<PolaganjeIspita> listaPolaganjaStudenta,
-			Set<Uplate> listaUplataStudenta) {
+			Double novcanik, Set<DokumentaStudenta> listaDokumenataStudenta, Set<Pohadjanje> listaPohadjanjaStudenta,
+			Set<PolaganjeIspita> listaPolaganjaStudenta, Set<Uplate> listaUplataStudenta, Korisnik korisnik) {
 		super();
 		this.id = id;
 		this.brojIndeksa = brojIndeksa;
@@ -86,16 +87,17 @@ public class Ucenik {
 		this.jmbg = jmbg;
 		this.email = email;
 		this.telefon = telefon;
-		this.korisnickoIme = korisnickoIme;
-		this.sifra = sifra;
 		this.novcanik = novcanik;
 		this.listaDokumenataStudenta = listaDokumenataStudenta;
 		this.listaPohadjanjaStudenta = listaPohadjanjaStudenta;
 		this.listaPolaganjaStudenta = listaPolaganjaStudenta;
 		this.listaUplataStudenta = listaUplataStudenta;
+		this.korisnik = korisnik;
 	}
-	
-	public Ucenik(UcenikDTO uDTO) {
+
+
+
+	public Ucenik(UcenikDTO uDTO, Korisnik k) {
 		this.id = uDTO.getId();
 		this.brojIndeksa = uDTO.getBrojIndeksa();
 		this.ime = uDTO.getIme();
@@ -103,9 +105,8 @@ public class Ucenik {
 		this.jmbg = uDTO.getJmbg();
 		this.email = uDTO.getEmail();
 		this.telefon = uDTO.getTelefon();
-		this.korisnickoIme = uDTO.getKorisnickoIme();
-		this.sifra = uDTO.getSifra();
 		this.novcanik = uDTO.getNovcanik();
+		this.korisnik = k;
 		this.listaDokumenataStudenta = uDTO.getListaDokumenataStudenta();
 		this.listaPohadjanjaStudenta = uDTO.getListaPohadjanjaStudenta();
 		this.listaPolaganjaStudenta = uDTO.getListaPolaganjaStudenta();
@@ -173,23 +174,7 @@ public class Ucenik {
 	public void setTelefon(String telefon) {
 		this.telefon = telefon;
 	}
-
-	public String getKorisnickoIme() {
-		return korisnickoIme;
-	}
-
-	public void setKorisnickoIme(String korisnickoIme) {
-		this.korisnickoIme = korisnickoIme;
-	}
-
-	public String getSifra() {
-		return sifra;
-	}
-
-	public void setSifra(String sifra) {
-		this.sifra = sifra;
-	}
-
+	
 	public Set<DokumentaStudenta> getListaDokumenataStudenta() {
 		return listaDokumenataStudenta;
 	}
@@ -229,6 +214,22 @@ public class Ucenik {
 	public void setNovcanik(Double novcanik) {
 		this.novcanik = novcanik;
 	}
+
+
+
+	public Korisnik getKorisnik() {
+		return korisnik;
+	}
+
+
+
+	public void setKorisnik(Korisnik korisnik) {
+		this.korisnik = korisnik;
+	}
+	
+	
+	
+	
  	
 	
 	

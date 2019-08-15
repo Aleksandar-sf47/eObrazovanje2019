@@ -69,7 +69,7 @@ public class LoginController {
 		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
 	}
 	
-	
+	//Pravi se samo admin
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody LoginForm loginForm) {
 		
