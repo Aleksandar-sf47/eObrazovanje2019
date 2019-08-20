@@ -33,7 +33,7 @@ import com.sf472015.eObrazovanje.security.JwtResponse;
 import com.sf472015.eObrazovanje.service.KorisnikService;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api")
 public class LoginController {
 	
 	@Autowired

@@ -7,7 +7,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { FormsModule } from "@angular/forms";
 import { AdminComponent } from "./components/admin/admin.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NastavnikComponent } from './components/nastavnik/nastavnik.component';
 import { NastavnikDodajComponent } from './components/nastavnik-dodaj/nastavnik-dodaj.component';
 import { NastavnikDetaljiComponent } from './components/nastavnik-detalji/nastavnik-detalji.component';
@@ -19,12 +19,18 @@ import { UcenikEditComponent } from './components/ucenik-edit/ucenik-edit.compon
 import { PredmetComponent } from './components/predmet/predmet.component';
 import { PredmetDodajComponent } from './components/predmet-dodaj/predmet-dodaj.component';
 import { PredmetDetaljiComponent } from './components/predmet-detalji/predmet-detalji.component';
+import { BasicAuthHtppInterceptorService } from './services/security/basic-auth-htpp-interceptor.service';
+
 
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, AdminComponent, NavbarComponent, NastavnikComponent, NastavnikDodajComponent, NastavnikDetaljiComponent, NastavnikEditComponent, UceniciComponent, UceniciDetaljiComponent, UcenikDodajComponent, UcenikEditComponent, PredmetComponent, PredmetDodajComponent, PredmetDetaljiComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS, useClass:BasicAuthHtppInterceptorService, multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

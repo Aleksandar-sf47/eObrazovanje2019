@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { AdminService } from 'src/app/services/admin/admin.service';
 import { NastavnikService } from 'src/app/services/nastavnik/nastavnik.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nastavnik',
@@ -9,7 +10,8 @@ import { NastavnikService } from 'src/app/services/nastavnik/nastavnik.service';
 })
 export class NastavnikComponent implements OnInit, OnChanges {
 
-  constructor(private nastavnikService : NastavnikService) { }
+  constructor(private nastavnikService : NastavnikService,
+              private router : Router) { }
   nastavnici = [];
   nastavnikDodaj : boolean = false; //sluzi za prikaz forme dodavanje nastavnika
   nastavnik;
@@ -34,7 +36,7 @@ export class NastavnikComponent implements OnInit, OnChanges {
   selectedNastavnik(n){
     console.log(n);
     this.nastavnik = n;
-    window.location.href = "nastavnik-details/" + this.nastavnik.id;
+    this.router.navigate(["nastavnik-details/" + this.nastavnik.id])
   }
 
   newNastavnik(){
