@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { AuthenticationServiceService } from 'src/app/services/security/authentication-service.service';
 import { Router } from '@angular/router';
+ 
 
 @Component({
   selector: "app-login",
@@ -8,8 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
+
+ 
+  
   username: string;
   password: string;
+
   constructor(private aServ : AuthenticationServiceService,
               private router : Router) {}
 
@@ -29,7 +34,9 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("uloga", res.authorities[0].authority)
         sessionStorage.setItem("token", res.accessToken)
         sessionStorage.setItem("tokenType", res.tokenType);
-        this.router.navigate([""]);
+        location.reload();
+        
+        
     });
   }
 }

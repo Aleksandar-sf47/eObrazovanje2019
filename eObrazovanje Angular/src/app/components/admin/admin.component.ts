@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AdminService } from "src/app/services/admin/admin.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-admin",
@@ -8,7 +9,9 @@ import { AdminService } from "src/app/services/admin/admin.service";
 })
 export class AdminComponent implements OnInit {
  
-  constructor() {}
+  
+  constructor(private route : Router) {
+  }
 
  
 

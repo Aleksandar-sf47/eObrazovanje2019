@@ -19,7 +19,7 @@ export class NastavnikDodajComponent implements OnInit {
     jmbg : "",
     email : "",
     telefon : "",
-    korisnickoIme : "",
+    kIme : "",
     sifra : ""
 };
   constructor(private nServ : NastavnikService) { }

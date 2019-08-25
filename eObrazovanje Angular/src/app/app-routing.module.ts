@@ -5,9 +5,10 @@ import { LoginComponent } from "./components/login/login.component";
 import { NastavnikDetaljiComponent } from './components/nastavnik-detalji/nastavnik-detalji.component';
 import { UceniciDetaljiComponent } from './components/ucenici-detalji/ucenici-detalji.component';
 import { PredmetDetaljiComponent } from './components/predmet-detalji/predmet-detalji.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  { path: "", component: AdminComponent },
+  { path: "", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "nastavnik-details/:id", component: NastavnikDetaljiComponent},
   { path: "ucenik-details/:id", component : UceniciDetaljiComponent},

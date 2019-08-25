@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { UcenikService } from 'src/app/services/ucenik/ucenik.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ucenici',
@@ -11,7 +12,7 @@ export class UceniciComponent implements OnInit, OnChanges {
   ucenik;
   ucenikDodaj : boolean = false; //sluzi za prikaz forme dodavanje ucenika
 
-  constructor(private uServ : UcenikService) { }
+  constructor(private uServ : UcenikService, private router : Router) { }
 
   ngOnInit() {
     this.uServ.getUcenici().subscribe(res=>{
@@ -27,7 +28,7 @@ export class UceniciComponent implements OnInit, OnChanges {
 
   selectedUcenik(u){
     this.ucenik = u;
-    window.location.href = "ucenik-details/" + this.ucenik.id;
+    this.router.navigate(["ucenik-details/" + this.ucenik.id])
   }
 
   showUcenikDodaj(){

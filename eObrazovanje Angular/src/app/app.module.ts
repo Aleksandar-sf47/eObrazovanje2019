@@ -20,11 +20,12 @@ import { PredmetComponent } from './components/predmet/predmet.component';
 import { PredmetDodajComponent } from './components/predmet-dodaj/predmet-dodaj.component';
 import { PredmetDetaljiComponent } from './components/predmet-detalji/predmet-detalji.component';
 import { BasicAuthHtppInterceptorService } from './services/security/basic-auth-htpp-interceptor.service';
+import { HomeComponent } from './components/home/home.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, AdminComponent, NavbarComponent, NastavnikComponent, NastavnikDodajComponent, NastavnikDetaljiComponent, NastavnikEditComponent, UceniciComponent, UceniciDetaljiComponent, UcenikDodajComponent, UcenikEditComponent, PredmetComponent, PredmetDodajComponent, PredmetDetaljiComponent],
+  declarations: [AppComponent, LoginComponent, AdminComponent, NavbarComponent, NastavnikComponent, NastavnikDodajComponent, NastavnikDetaljiComponent, NastavnikEditComponent, UceniciComponent, UceniciDetaljiComponent, UcenikDodajComponent, UcenikEditComponent, PredmetComponent, PredmetDodajComponent, PredmetDetaljiComponent, HomeComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [
     {
