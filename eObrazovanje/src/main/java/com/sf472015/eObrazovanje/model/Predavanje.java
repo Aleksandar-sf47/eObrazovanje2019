@@ -25,14 +25,14 @@ public class Predavanje {
 	private Nastavnik nastavnik;
 	
 	@ManyToOne
-	@JoinColumn(name="predmet_id", referencedColumnName="predmet_id", unique=false, nullable=false)
+	@JoinColumn(name="predmet_id", referencedColumnName="predmet_id", unique=true, nullable=false)
 	private Predmet predmet;
 	
 	//constructor
 	public Predavanje() {
 	}
 
-	public Predavanje(Long id, Nastavnik nastavnik, Predmet predmet, Pohadjanje pohadjanje) {
+	public Predavanje(Long id, Nastavnik nastavnik, Predmet predmet) {
 		super();
 		this.id = id;
 		this.nastavnik = nastavnik;
@@ -43,8 +43,8 @@ public class Predavanje {
 	public Predavanje(PredavanjeDTO pDTO) {
 		super();
 		this.id = pDTO.getId();
-		this.nastavnik = pDTO.getNastavnik();
-		this.predmet = pDTO.getPredmet();
+		this.nastavnik = new Nastavnik(pDTO.getNastavnik());
+		this.predmet = new Predmet(pDTO.getPredmet());
 	}
 
 	//getter and setter

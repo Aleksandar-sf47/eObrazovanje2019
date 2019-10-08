@@ -35,13 +35,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let n of nastavnici" (click)="selectedNastavnik(n)">
+        <tr *ngFor="let n of nastavnici">
           <td>{{ n.ime }}</td>
           <td>{{ n.prezime }}</td>
           <td>{{ n.email }}</td>
         </tr>
       </tbody>
     </table>
+
+    <button class="btn btn-access btn-sm" data-toggle="modal" data-target="#exampleModalCenter1">Dodaj</button>
   </div>
 
   <!--Pohadjanje-->
@@ -56,7 +58,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let u of ucenici" (click)="selectedUcenik(u)">
+        <tr *ngFor="let u of ucenici">
           <td>{{ u.brojIndeksa }}</td>
           <td>{{ u.ime }}</td>
           <td>{{ u.prezime }}</td>
@@ -64,4 +66,83 @@
         </tr>
       </tbody>
     </table>
+
+    <button class="btn btn-access btn-sm" data-toggle="modal" data-target="#exampleModalCenter2">Dodaj</button>
+</div>
+
+
+
+<!--Modal za dodavanje nastavnika u predavanje -->
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Lista nastavnika</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Lista nastavnika</p>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Ime</th>
+              <th scope="col">Prezime</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let n of nastavniciModal" (click)="selectedNastavnik(n)">
+              <td>{{ n.ime }}</td>
+              <td>{{ n.prezime }}</td>
+              <td>{{ n.email }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Modal za dodavanje ucenika u pohadjanje -->
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Lista ucenika</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Lista ucenika</p>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Br. indeksa</th>
+              <th scope="col">Ime</th>
+              <th scope="col">Prezime</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let u of uceniciModal" (click)="selectedUcenik(u)">
+              <td>{{ u.brojIndeksa }}</td>
+              <td>{{ u.ime }}</td>
+              <td>{{ u.prezime }}</td>
+              <td>{{ u.email }}</td>
+            </tr>
+          </tbody>
+        </table>
+      
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" (click)="btnDeleteClick()" >Yes</button>
+      </div>
+    </div>
+  </div>
 </div>

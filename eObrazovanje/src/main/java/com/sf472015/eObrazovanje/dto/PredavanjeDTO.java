@@ -14,8 +14,8 @@ import com.sf472015.eObrazovanje.model.Predmet;
 public class PredavanjeDTO {
 
 	private Long id;
-	private Nastavnik nastavnik;
-	private Predmet predmet;
+	private NastavnikDTO nastavnik;
+	private PredmetDTO predmet;
 	
 	public PredavanjeDTO() {
 		super();
@@ -25,15 +25,14 @@ public class PredavanjeDTO {
 	public PredavanjeDTO(Long id, Nastavnik nastavnik, Predmet predmet) {
 		super();
 		this.id = id;
-		this.nastavnik = nastavnik;
-		this.predmet = predmet;
+		this.nastavnik = new NastavnikDTO(nastavnik);
+		this.predmet = new PredmetDTO(predmet);
 	}
 
 	public PredavanjeDTO(Predavanje p) {
-		super();
 		this.id = p.getId();
-		this.nastavnik = p.getNastavnik();
-		this.predmet = p.getPredmet();
+		this.nastavnik = new NastavnikDTO(p.getNastavnik());
+		this.predmet = new PredmetDTO(p.getPredmet());
 		
 	}
 	
@@ -45,19 +44,19 @@ public class PredavanjeDTO {
 		this.id = id;
 	}
 
-	public Nastavnik getNastavnik() {
+	public NastavnikDTO getNastavnik() {
 		return nastavnik;
 	}
 
-	public void setNastavnik(Nastavnik nastavnik) {
+	public void setNastavnik(NastavnikDTO nastavnik) {
 		this.nastavnik = nastavnik;
 	}
 
-	public Predmet getPredmet() {
+	public PredmetDTO getPredmet() {
 		return predmet;
 	}
 
-	public void setPredmet(Predmet predmet) {
+	public void setPredmet(PredmetDTO predmet) {
 		this.predmet = predmet;
 	}
 	

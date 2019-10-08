@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.sf472015.eObrazovanje.dto.KorisnikDTO;
 import com.sf472015.eObrazovanje.model.Korisnik;
 import com.sf472015.eObrazovanje.model.Uloga;
 import com.sf472015.eObrazovanje.repo.KorisnikRepository;
@@ -22,8 +23,8 @@ public class KorisnikService implements KorisnikServiceInterface {
 	private KorisnikRepository kRepo;
 
 	@Override
-	public Korisnik save(String kIme, String sifra, Set<Uloga> uloge) {
-		return kRepo.save(new Korisnik(kIme, sifra, uloge));
+	public Korisnik save(KorisnikDTO korisnikDTO) {
+		return kRepo.save(new Korisnik(korisnikDTO));
 	}
 
 }

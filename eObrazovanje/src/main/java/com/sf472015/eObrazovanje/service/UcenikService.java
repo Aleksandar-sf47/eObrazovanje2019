@@ -5,12 +5,16 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.sf472015.eObrazovanje.controller.LoginController;
+import com.sf472015.eObrazovanje.dto.KorisnikDTO;
 import com.sf472015.eObrazovanje.dto.UcenikDTO;
 import com.sf472015.eObrazovanje.model.Korisnik;
+import com.sf472015.eObrazovanje.model.Nastavnik;
 import com.sf472015.eObrazovanje.model.Ucenik;
 import com.sf472015.eObrazovanje.model.Uloga;
 import com.sf472015.eObrazovanje.repo.UcenikRepository;
@@ -30,6 +34,8 @@ public class UcenikService  implements UcenikServiceInterface{
 	@Autowired
 	PasswordEncoder encoder;
 	
+	org.slf4j.Logger logger = LoggerFactory.getLogger(LoginController.class);
+	
 	@Override
 	public UcenikDTO findById(Long id) {
 		Ucenik u = uRepo.getOne(id);
@@ -46,9 +52,13 @@ public class UcenikService  implements UcenikServiceInterface{
 	public Ucenik save(UcenikDTO uDTO) {
 		Set<Uloga> uloge = new HashSet<Uloga>();
 		Uloga u = uServ.getUlogaByName("STUDENT");
+		logger.info("------------------------" + u.getUloga());
 		uloge.add(u);
-		Korisnik k = kServ.save(uDTO.getKorisnickoIme(), encoder.encode(uDTO.getSifra()), uloge);
-		Ucenik ucenik = new Ucenik(uDTO, k);
+		uDTO.getKorisnik().setListaUloga(uloge);
+		Korisnik k = kServ.save(uDTO.getKorisnik());
+		uDTO.setKorisnik(new KorisnikDTO(k));
+		encoder.encode(uDTO.getKorisnik().getSifra());
+		Ucenik ucenik = new Ucenik(uDTO); 
 		return uRepo.save(ucenik);
 	}
 
@@ -67,13 +77,10 @@ public class UcenikService  implements UcenikServiceInterface{
 		u.setJmbg(uDTO.getJmbg());
 		u.setEmail(uDTO.getEmail());
 		u.setTelefon(uDTO.getEmail());
-		u.getKorisnik().setKorisnickoIme(uDTO.getKorisnickoIme());
-		u.getKorisnik().setSifra(uDTO.getSifra());
+		u.getKorisnik().setKorisnickoIme(uDTO.getKorisnik().getKorisnickoIme());
+		u.getKorisnik().setSifra(uDTO.getKorisnik().getSifra());
 		u.setNovcanik(uDTO.getNovcanik());
-		u.setListaDokumenataStudenta(uDTO.getListaDokumenataStudenta());
-		u.setListaPohadjanjaStudenta(uDTO.getListaPohadjanjaStudenta());
-		u.setListaPolaganjaStudenta(uDTO.getListaPolaganjaStudenta());
-		u.setListaUplataStudenta(uDTO.getListaUplataStudenta());
+
 		return uRepo.save(u);
 		
 	}

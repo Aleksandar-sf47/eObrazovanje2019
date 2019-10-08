@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { PredmetService } from 'src/app/services/predmet/predmet.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-predmet',
@@ -10,10 +11,10 @@ export class PredmetComponent implements OnInit, OnChanges {
 
   predmeti = [];
   predmetDodaj : boolean = false; //sluzi za prikaz forme dodavanje predmeta
-  predmet;
+  predmet = {id: "", naziv : ""};
   
 
-  constructor(private pServ : PredmetService) { }
+  constructor(private pServ : PredmetService, private router : Router) { }
 
   ngOnInit() {
     this.pServ.getPredmeti().subscribe(res=>{
@@ -36,7 +37,7 @@ export class PredmetComponent implements OnInit, OnChanges {
   }
 
   sendToDetails(){
-    window.location.href = "predmet-details/" + this.predmet.id;
+    this.router.navigate(["predmet-details/" + this.predmet.id]);
   }
 
   btnDeleteClick(){

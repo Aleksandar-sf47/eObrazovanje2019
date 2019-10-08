@@ -1,15 +1,8 @@
 package com.sf472015.eObrazovanje.dto;
 
 import java.io.Serializable;
-import java.util.Set;
 
-import org.springframework.web.bind.annotation.GetMapping;
-
-import com.sf472015.eObrazovanje.model.DokumentaStudenta;
-import com.sf472015.eObrazovanje.model.Pohadjanje;
-import com.sf472015.eObrazovanje.model.PolaganjeIspita;
 import com.sf472015.eObrazovanje.model.Ucenik;
-import com.sf472015.eObrazovanje.model.Uplate;
 
 public class UcenikDTO implements Serializable {
 	
@@ -21,13 +14,9 @@ public class UcenikDTO implements Serializable {
 	private String jmbg;
 	private String email;
 	private String telefon;
-	private String korisnickoIme;
-	private String sifra;
+	private KorisnikDTO korisnikDTO;
 	private Double novcanik;
-	private Set<DokumentaStudenta> listaDokumenataStudenta;
-	private Set<Pohadjanje> listaPohadjanjaStudenta;
-	private Set<PolaganjeIspita> listaPolaganjaStudenta;
-	private Set<Uplate> listaUplataStudenta;
+
 	
 	
 	
@@ -45,13 +34,9 @@ public class UcenikDTO implements Serializable {
 		this.jmbg = u.getPrezime();
 		this.email = u.getEmail();
 		this.telefon = u.getTelefon();
-		this.korisnickoIme = u.getKorisnik().getKorisnickoIme();
-		this.sifra = u.getKorisnik().getSifra();
 		this.novcanik = u.getNovcanik();
-		this.listaDokumenataStudenta = u.getListaDokumenataStudenta();
-		this.listaPohadjanjaStudenta = u.getListaPohadjanjaStudenta();
-		this.listaPolaganjaStudenta = u.getListaPolaganjaStudenta();
-		this.listaUplataStudenta = u.getListaUplataStudenta();
+		this.korisnikDTO = new KorisnikDTO(u.getKorisnik());
+		
 	}
 
 
@@ -140,29 +125,6 @@ public class UcenikDTO implements Serializable {
 
 
 
-	public String getKorisnickoIme() {
-		return korisnickoIme;
-	}
-
-
-
-	public void setKorisnickoIme(String korisnickoIme) {
-		this.korisnickoIme = korisnickoIme;
-	}
-
-
-
-	public String getSifra() {
-		return sifra;
-	}
-
-
-
-	public void setSifra(String sifra) {
-		this.sifra = sifra;
-	}
-
-
 
 	public Double getNovcanik() {
 		return novcanik;
@@ -176,51 +138,16 @@ public class UcenikDTO implements Serializable {
 
 
 
-	public Set<DokumentaStudenta> getListaDokumenataStudenta() {
-		return listaDokumenataStudenta;
+	public KorisnikDTO getKorisnik() {
+		return korisnikDTO;
 	}
 
 
 
-	public void setListaDokumenataStudenta(Set<DokumentaStudenta> listaDokumenataStudenta) {
-		this.listaDokumenataStudenta = listaDokumenataStudenta;
+	public void setKorisnik(KorisnikDTO korisnik) {
+		this.korisnikDTO = korisnik;
 	}
-
-
-
-	public Set<Pohadjanje> getListaPohadjanjaStudenta() {
-		return listaPohadjanjaStudenta;
-	}
-
-
-
-	public void setListaPohadjanjaStudenta(Set<Pohadjanje> listaPohadjanjaStudenta) {
-		this.listaPohadjanjaStudenta = listaPohadjanjaStudenta;
-	}
-
-
-
-	public Set<PolaganjeIspita> getListaPolaganjaStudenta() {
-		return listaPolaganjaStudenta;
-	}
-
-
-
-	public void setListaPolaganjaStudenta(Set<PolaganjeIspita> listaPolaganjaStudenta) {
-		this.listaPolaganjaStudenta = listaPolaganjaStudenta;
-	}
-
-
-
-	public Set<Uplate> getListaUplataStudenta() {
-		return listaUplataStudenta;
-	}
-
-
-
-	public void setListaUplataStudenta(Set<Uplate> listaUplataStudenta) {
-		this.listaUplataStudenta = listaUplataStudenta;
-	}
+	
 	
 	
 	

@@ -19,9 +19,9 @@ export class NastavnikDodajComponent implements OnInit {
     jmbg : "",
     email : "",
     telefon : "",
-    kIme : "",
+    korisnickoIme : "",
     sifra : ""
-};
+  };
   constructor(private nServ : NastavnikService) { }
 
   ngOnInit() {

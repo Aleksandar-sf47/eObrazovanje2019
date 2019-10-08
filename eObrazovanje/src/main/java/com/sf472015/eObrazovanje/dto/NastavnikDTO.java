@@ -1,10 +1,13 @@
 package com.sf472015.eObrazovanje.dto;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.sf472015.eObrazovanje.model.Korisnik;
 import com.sf472015.eObrazovanje.model.Nastavnik;
+import com.sf472015.eObrazovanje.model.PolaganjeIspita;
 import com.sf472015.eObrazovanje.model.Predavanje;
 
 public class NastavnikDTO  implements Serializable{
@@ -15,18 +18,18 @@ public class NastavnikDTO  implements Serializable{
 	private String jmbg;
 	private String email;
 	private String telefon;
-	private String kIme;
-	private String sifra;
-	private Set<Predavanje> listaPredavanjaNastavnika;
+	private KorisnikDTO korisnikDTO;
+	
+	
 	
 	public NastavnikDTO() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	
-	
-	public NastavnikDTO(Long id, String ime, String prezime, String jmbg, String email, String telefon, String kIme,
-			String sifra, Set<Predavanje> listaPredavanjaNastavnika) {
+	public NastavnikDTO(Long id, String ime, String prezime, String jmbg, String email, String telefon,
+			KorisnikDTO korisnikDTO, Set<PredavanjeDTO> listaPredavanjaNastavnika,
+			Set<PolaganjeIspita> listaPolaganjaIspita) {
 		super();
 		this.id = id;
 		this.ime = ime;
@@ -34,13 +37,10 @@ public class NastavnikDTO  implements Serializable{
 		this.jmbg = jmbg;
 		this.email = email;
 		this.telefon = telefon;
-		this.kIme = kIme;
-		this.sifra = sifra;
-		this.listaPredavanjaNastavnika = listaPredavanjaNastavnika;
+		this.korisnikDTO = korisnikDTO;
+
 	}
-
-
-
+	
 	public NastavnikDTO(Nastavnik n) {
 		this.id = n.getId();
 		this.ime = n.getIme();
@@ -48,9 +48,9 @@ public class NastavnikDTO  implements Serializable{
 		this.jmbg = n.getJmbg();
 		this.email = n.getEmail();
 		this.telefon = n.getTelefon();
-		this.kIme = n.getKorisnik().getKorisnickoIme();
-		this.sifra = n.getKorisnik().getSifra();
-		this.listaPredavanjaNastavnika = n.getListaPredavanjaNastavnika();
+		this.korisnikDTO = new KorisnikDTO(n.getKorisnik());
+		
+		
 	}
 
 	public Long getId() {
@@ -101,45 +101,25 @@ public class NastavnikDTO  implements Serializable{
 		this.telefon = telefon;
 	}
 
+	public KorisnikDTO getKorisnikDTO() {
+		return korisnikDTO;
+	}
+
+	public void setKorisnikDTO(KorisnikDTO korisnikDTO) {
+		this.korisnikDTO = korisnikDTO;
+	}
+
 	
 
-	public String getkIme() {
-		return kIme;
-	}
+	
 
-
-
-	public void setkIme(String kIme) {
-		this.kIme = kIme;
-	}
-
-
-
-	public String getSifra() {
-		return sifra;
-	}
-
-
-
-	public void setSifra(String sifra) {
-		this.sifra = sifra;
-	}
-
-
-
-	public Set<Predavanje> getListaPredavanjaNastavnika() {
-		return listaPredavanjaNastavnika;
-	}
-
-	public void setListaPredavanjaNastavnika(Set<Predavanje> listaPredavanjaNastavnika) {
-		this.listaPredavanjaNastavnika = listaPredavanjaNastavnika;
-	}
+	
 
 	
 	
 	
-	
-	
+
+
 	
 	
 

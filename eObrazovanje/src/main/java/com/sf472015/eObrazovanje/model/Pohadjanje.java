@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.sf472015.eObrazovanje.dto.PohadjanjeDTO;
@@ -27,9 +28,10 @@ public class Pohadjanje {
 	@ManyToMany(mappedBy="listaPohadjanjaStudenta")
 	private Set<Ucenik> listaUcenika;
 	
-	@ManyToOne
-	@JoinColumn(name="predmet_id", referencedColumnName="predmet_id", nullable=false)
+	@OneToOne
+	@JoinColumn(name="predmet_id", referencedColumnName="predmet_id")
 	private Predmet predmet;
+
 
 	public Pohadjanje() {
 		super();
@@ -40,13 +42,13 @@ public class Pohadjanje {
 		super();
 		this.id = id;
 		this.listaUcenika = listaUcenika;
-		this.predmet = predmet;
+
 	}
 	
 	public Pohadjanje(PohadjanjeDTO pDTO) {
 		this.id = pDTO.getId();
 		this.listaUcenika = pDTO.getListaUcenika();
-		this.predmet = pDTO.getPredmet();
+
 	}
 
 	public Long getId() {
@@ -65,13 +67,6 @@ public class Pohadjanje {
 		this.listaUcenika = listaUcenika;
 	}
 
-	public Predmet getPredmet() {
-		return predmet;
-	}
-
-	public void setPredmet(Predmet predmet) {
-		this.predmet = predmet;
-	}
 
 	
 	

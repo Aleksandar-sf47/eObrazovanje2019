@@ -97,7 +97,7 @@ public class Ucenik {
 
 
 
-	public Ucenik(UcenikDTO uDTO, Korisnik k) {
+	public Ucenik(UcenikDTO uDTO) {
 		this.id = uDTO.getId();
 		this.brojIndeksa = uDTO.getBrojIndeksa();
 		this.ime = uDTO.getIme();
@@ -106,11 +106,8 @@ public class Ucenik {
 		this.email = uDTO.getEmail();
 		this.telefon = uDTO.getTelefon();
 		this.novcanik = uDTO.getNovcanik();
-		this.korisnik = k;
-		this.listaDokumenataStudenta = uDTO.getListaDokumenataStudenta();
-		this.listaPohadjanjaStudenta = uDTO.getListaPohadjanjaStudenta();
-		this.listaPolaganjaStudenta = uDTO.getListaPolaganjaStudenta();
-		this.listaUplataStudenta = uDTO.getListaUplataStudenta();
+		this.korisnik = new Korisnik(uDTO.getKorisnik());
+		
 	}
 
 	

@@ -1,6 +1,7 @@
 package com.sf472015.eObrazovanje.model;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,7 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.sf472015.eObrazovanje.dto.PredmetDTO;
@@ -28,27 +31,34 @@ public class Predmet {
 	@Column(name="predmet_naziv", nullable=false, unique=true)
 	private String naziv;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy = "predmet")
-	private List<Pohadjanje> pohadjanja;
 	
-	//constructor
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="predmet")
+	private Set<Predavanje> predavanje;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="predmet")
+	private Set<PolaganjeIspita> listaPolaganjaIspita;
+
 	public Predmet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Predmet(Long id, String naziv) {
+	public Predmet(Long id, String naziv, Set<Pohadjanje> pohadjanja, Set<Predavanje> predavanje,
+			Set<PolaganjeIspita> listaPolaganjaIspita) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
+	
+		this.predavanje = predavanje;
+		this.listaPolaganjaIspita = listaPolaganjaIspita;
 	}
 	
 	public Predmet(PredmetDTO pDTO) {
-		super();
 		this.id = pDTO.getId();
 		this.naziv = pDTO.getNaziv();
-		this.pohadjanja = pDTO.getPohadjanja();
+	
 	}
 
-	//getter and setter
 	public Long getId() {
 		return id;
 	}
@@ -65,13 +75,25 @@ public class Predmet {
 		this.naziv = naziv;
 	}
 
-	public List<Pohadjanje> getPohadjanja() {
-		return pohadjanja;
+	
+
+	public Set<Predavanje> getPredavanje() {
+		return predavanje;
 	}
 
-	public void setPohadjanja(List<Pohadjanje> pohadjanja) {
-		this.pohadjanja = pohadjanja;
+	public void setPredavanje(Set<Predavanje> predavanje) {
+		this.predavanje = predavanje;
 	}
+
+	public Set<PolaganjeIspita> getListaPolaganjaIspita() {
+		return listaPolaganjaIspita;
+	}
+
+	public void setListaPolaganjaIspita(Set<PolaganjeIspita> listaPolaganjaIspita) {
+		this.listaPolaganjaIspita = listaPolaganjaIspita;
+	}
+
+	
 	
 	
 

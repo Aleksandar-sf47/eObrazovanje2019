@@ -1,6 +1,9 @@
 package com.sf472015.eObrazovanje.model;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -46,14 +49,17 @@ public class Nastavnik {
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="nastavnik")
 	private Set<Predavanje> listaPredavanjaNastavnika;
+	
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="nastavnik")
+	private Set<PolaganjeIspita> listaPolaganjaIspita;
 
-	//constructor
 	public Nastavnik() {
-		
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public Nastavnik(Long id, String ime, String prezime, String jmbg, String email, String telefon, Korisnik korisnik,
-			Set<Predavanje> listaPredavanjaNastavnika) {
+			Set<Predavanje> listaPredavanjaNastavnika, Set<PolaganjeIspita> listaPolaganjaIspita) {
 		super();
 		this.id = id;
 		this.ime = ime;
@@ -63,6 +69,18 @@ public class Nastavnik {
 		this.telefon = telefon;
 		this.korisnik = korisnik;
 		this.listaPredavanjaNastavnika = listaPredavanjaNastavnika;
+		this.listaPolaganjaIspita = listaPolaganjaIspita;
+	}
+	
+	public Nastavnik(NastavnikDTO nDTO) {
+		this.id = nDTO.getId();
+		this.ime = nDTO.getIme();
+		this.prezime = nDTO.getPrezime();
+		this.jmbg = nDTO.getJmbg();
+		this.email = nDTO.getEmail();
+		this.telefon = nDTO.getTelefon();
+		this.korisnik = new Korisnik(nDTO.getKorisnikDTO());
+	
 	}
 
 	public Long getId() {
@@ -129,16 +147,14 @@ public class Nastavnik {
 		this.listaPredavanjaNastavnika = listaPredavanjaNastavnika;
 	}
 
-	public Nastavnik(NastavnikDTO nDTO, Korisnik k) {
-		this.id = nDTO.getId();
-		this.ime = nDTO.getIme();
-		this.prezime = nDTO.getPrezime();
-		this.jmbg = nDTO.getJmbg();
-		this.email = nDTO.getEmail();
-		this.telefon = nDTO.getTelefon();
-		this.korisnik = k;
-		this.listaPredavanjaNastavnika = nDTO.getListaPredavanjaNastavnika();
+	public Set<PolaganjeIspita> getListaPolaganjaIspita() {
+		return listaPolaganjaIspita;
 	}
+
+	public void setListaPolaganjaIspita(Set<PolaganjeIspita> listaPolaganjaIspita) {
+		this.listaPolaganjaIspita = listaPolaganjaIspita;
+	}
+
 	
 	
 	

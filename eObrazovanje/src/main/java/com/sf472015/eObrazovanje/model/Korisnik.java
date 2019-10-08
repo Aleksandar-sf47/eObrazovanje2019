@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.sf472015.eObrazovanje.dto.KorisnikDTO;
+
 @Entity
 @Table(name="korisnici")
 public class Korisnik {
@@ -35,18 +37,24 @@ public class Korisnik {
 	inverseJoinColumns=@JoinColumn(name="uloga_id"))
 	private Set<Uloga> uloge = new HashSet<>();
 
-
-	
-	public Korisnik(String korisnickoIme, String sifra, Set<Uloga> uloge) {
+	public Korisnik() {
 		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Korisnik(Long korisnik_id, String korisnickoIme, String sifra, Set<Uloga> uloge) {
+		super();
+		this.korisnik_id = korisnik_id;
 		this.korisnickoIme = korisnickoIme;
 		this.sifra = sifra;
 		this.uloge = uloge;
 	}
-
-	public Korisnik() {
-		super();
-		// TODO Auto-generated constructor stub
+	
+	public Korisnik(KorisnikDTO k) {
+		this.korisnik_id = k.getId();
+		this.korisnickoIme = k.getKorisnickoIme();
+		this.sifra = k.getSifra();
+		this.uloge = k.getListaUloga();
 	}
 
 	public Long getKorisnik_id() {
@@ -80,6 +88,8 @@ public class Korisnik {
 	public void setUloge(Set<Uloga> uloge) {
 		this.uloge = uloge;
 	}
+
+
 	
 	
 	

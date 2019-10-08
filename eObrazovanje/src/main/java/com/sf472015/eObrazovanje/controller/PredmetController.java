@@ -1,6 +1,9 @@
 package com.sf472015.eObrazovanje.controller;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.List;import java.util.stream.Collectors;
+
+import javax.swing.text.MaskFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +17,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sf472015.eObrazovanje.dto.NastavnikDTO;
+import com.sf472015.eObrazovanje.dto.PredavanjeDTO;
 import com.sf472015.eObrazovanje.dto.PredmetDTO;
+import com.sf472015.eObrazovanje.dto.UcenikDTO;
+import com.sf472015.eObrazovanje.model.Predavanje;
+import com.sf472015.eObrazovanje.model.Predmet;
+import com.sf472015.eObrazovanje.repo.PredavanjeRepository;
+
 import com.sf472015.eObrazovanje.service.PredmetService;
 
 @RestController
@@ -23,6 +33,12 @@ public class PredmetController {
 
 	@Autowired
 	PredmetService pServ;
+	
+
+	@Autowired
+	PredavanjeRepository pRepo;
+	
+
 	
 	@GetMapping
 	public ResponseEntity<List<PredmetDTO>> getPredmet(){
@@ -52,4 +68,28 @@ public class PredmetController {
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 		
 	}
+	
+	@GetMapping("/{id}/predavanja")
+	public ResponseEntity<List<NastavnikDTO>>getPredavanje(@PathVariable(value = "id") Long id){
+		List<NastavnikDTO> nastavnici = pServ.getPredmetPredavanja(id);
+		return new ResponseEntity<List<NastavnikDTO>>(nastavnici, HttpStatus.OK);
+	}
+	
+	@PostMapping("/{id}/predavanja")
+	public ResponseEntity<HttpStatus> postPredavanje(@PathVariable(value ="id") Long id, @RequestBody NastavnikDTO nDTO){
+		pServ.createPredavanje(id, nDTO);
+		return new ResponseEntity<HttpStatus>(HttpStatus.CREATED); 
+	}
+	
+	@DeleteMapping("/{id}/predavanja/{nastavnikId}")
+	public ResponseEntity<HttpStatus> deletePredavanje(@PathVariable(value="id") Long id, @PathVariable(value="nastavnikId") Long nastavnikId){
+		pServ.deletePredavanje(id, nastavnikId);
+		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+	}
+	
+	@GetMapping("/{id}/pohadjanja")
+	public ResponseEntity<List<UcenikDTO>> getPohadjanja(@PathVariable(value="id") Long id){
+		List<UcenikDTO> ucenici = pServ.getPredmetPohadjanja(id);
+		return new ResponseEntity<List<UcenikDTO>>(ucenici, HttpStatus.OK);
+ 	}
 }

@@ -20,7 +20,7 @@ public class PohadjanjeDTO {
 		super();
 		this.id = p.getId();
 		this.listaUcenika = p.getListaUcenika();
-		this.predmet = p.getPredmet();
+	
 	}
 
 	public Long getId() {

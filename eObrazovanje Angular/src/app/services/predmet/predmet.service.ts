@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class PredmetService {
 
   private API = "api/predmeti";
+  private APIPredavanje = "api/predavanje";
   constructor(private http : HttpClient) { }
 
   getPredmeti(): Observable<any> {
@@ -28,5 +29,14 @@ export class PredmetService {
 
   deletePredmet(id) : Observable<any>{
     return this.http.delete(this.API + "/" + id);
+  }
+
+
+  postPredavanje(PredavanjeDTO) : Observable<any>{
+    return this.http.post(this.APIPredavanje, PredavanjeDTO);
+  }
+
+  getPredavanje(id) : Observable<any>{
+    return this.http.get(this.API + "/" + id + "/predavanje");
   }
 }

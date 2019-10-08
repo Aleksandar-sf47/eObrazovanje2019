@@ -1,7 +1,10 @@
 package com.sf472015.eObrazovanje.controller;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sf472015.eObrazovanje.dto.NastavnikDTO;
+import com.sf472015.eObrazovanje.dto.PohadjanjeDTO;
+import com.sf472015.eObrazovanje.dto.PredavanjeDTO;
+import com.sf472015.eObrazovanje.dto.PredmetDTO;
+import com.sf472015.eObrazovanje.model.Nastavnik;
+import com.sf472015.eObrazovanje.model.Predavanje;
 import com.sf472015.eObrazovanje.service.NastavnikService;
+
 
 @RestController
 //@CrossOrigin(origins = "http://localhost:4200")
@@ -25,6 +34,10 @@ public class NastavnikController {
 	
 	@Autowired
 	private NastavnikService nServ;
+	
+	
+	
+	
 	
 	@GetMapping
 	public ResponseEntity<List<NastavnikDTO>> getNastavnici(){
@@ -53,6 +66,26 @@ public class NastavnikController {
 		nServ.remove(id);
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 		
+	}
+	
+	@GetMapping("/{id}/predavanja")
+	public ResponseEntity<List<PredmetDTO>> getNastavniciPredavanja(@PathVariable(value = "id") Long id){
+		List<PredmetDTO> predmeti = nServ.getNastavnikPredavanja(id);
+		return new ResponseEntity<List<PredmetDTO>>(predmeti, HttpStatus.OK);
+		
+	}
+	
+	@PostMapping("/{id}/predavanja")
+	public ResponseEntity<HttpStatus> getNastavniciPredavanja(@PathVariable(value = "id") Long id, @RequestBody PredmetDTO pDTO){
+		nServ.createPredavanje(id, pDTO);
+		return new ResponseEntity<HttpStatus>(HttpStatus.CREATED);
+		
+	}
+	
+	@DeleteMapping("/{id}/predavanja/{predmetId}")
+	public ResponseEntity<HttpStatus> deleteNastavniciPredavanje(@PathVariable(value = "id") Long id, @PathVariable(value = "predmetId") Long predmetId){
+		nServ.deletePredavanje(id, predmetId);
+		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 
 }

@@ -69,15 +69,5 @@ public class LoginController {
 		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
 	}
 	
-	//Pravi se samo admin
-	@PostMapping("/signup")
-	public ResponseEntity<?> registerUser(@Valid @RequestBody LoginForm loginForm) {
-		
-		Set<Uloga> uloge = new HashSet<Uloga>();
-		uloge.add(uRepo.getByUloga("ADMIN"));
-		Korisnik k = new Korisnik(loginForm.getkIme(), loginForm.getSifra(), uloge);
-		kServ.save(k.getKorisnickoIme(), encoder.encode(k.getSifra()), k.getUloge());
-		return new ResponseEntity<>( HttpStatus.OK);
-	}
 
 }
