@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { AuthenticationServiceService } from 'src/app/services/security/authentication-service.service';
 import { Router } from '@angular/router';
+import { Korisnik } from 'src/app/model/korisnik';
  
 
 @Component({
@@ -12,8 +13,7 @@ export class LoginComponent implements OnInit {
 
  
   
-  username: string;
-  password: string;
+  private korisnik : Korisnik = new Korisnik();
 
   constructor(private aServ : AuthenticationServiceService,
               private router : Router) {}
@@ -21,9 +21,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   login() {
-    let loginDTO = { "kIme": this.username, "sifra": this.password };
-    console.log(loginDTO);
-    this.aServ.authentication(loginDTO).subscribe(res => {
+    console.log(this.korisnik);
+    this.aServ.authentication(this.korisnik).subscribe(res => {
         console.log("Ovo je rezultat: " + "\n"
         + "korisnicko ime : " + res.username + "\n"
         + "uloga : " + res.authorities[0].authority + "\n"

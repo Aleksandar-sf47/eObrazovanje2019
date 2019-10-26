@@ -93,5 +93,7 @@ public class PredmetService implements PredmetServiceInterface {
 		return p.getListaUcenika().stream().map(U -> new UcenikDTO(U)).collect(Collectors.toList());
 	}
 	
+	
+	
 
 }

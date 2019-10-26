@@ -7,7 +7,7 @@
                     <label>ID</label>
                 </div>
                 <div class="col-sm-2">
-                  <p>{{nastavnik.id}}</p>
+                  <p>{{nastavnik.getId()}}</p>
                 </div>  
             </div>
           <div class="row">
@@ -15,7 +15,7 @@
                   <label>Ime</label>
               </div>
               <div class="col-sm-2">
-                <p>{{nastavnik.ime}}</p>
+                <p>{{nastavnik.getIme()}}</p>
               </div>
             </div>
           <div class="row">
@@ -23,7 +23,7 @@
                   <label>Prezime</label>
               </div>
               <div class="col-sm-2">
-                <p>{{nastavnik.prezime}}</p>
+                <p>{{nastavnik.getPrezime()}}</p>
               </div>  
           </div>
           <div class="row">
@@ -31,7 +31,7 @@
                 <label>JMBG</label>
             </div>
             <div class="col-sm-2">
-              <p>{{nastavnik.jmbg}}</p>
+              <p>{{nastavnik.getJMBG()}}</p>
             </div>  
         </div>
         <div class="row">
@@ -39,7 +39,7 @@
               <label>e-mil</label>
           </div>
           <div class="col-sm-2">
-            <p>{{nastavnik.email}}</p>
+            <p>{{nastavnik.getEmail()}}</p>
           </div>
         </div>
         <div class="row">
@@ -47,7 +47,7 @@
               <label>Telefon</label>
           </div>
           <div class="col-sm-2">
-            <p>{{nastavnik.telefon}}</p>
+            <p>{{nastavnik.getTelefon()}}</p>
           </div>  
       </div>
       <div class="row">
@@ -55,7 +55,7 @@
               <label>Korisnicko ime</label>
           </div>
           <div class="col-sm-2">
-            <p>{{nastavnik.kIme}}</p>
+            <p>{{nastavnik.getKorisnik().getKorisnickoIme()}}</p>
           </div>  
         </div>
         <div class="row">
@@ -63,7 +63,7 @@
               <label>Sifra</label>
           </div>
           <div class="col-sm-2">
-            <p>{{nastavnik.sifra}}</p>
+            <p>{{nastavnik.getKorisnik().getSifra()}}</p>
           </div>  
         </div>
         <button class="btn btn-success btn-sm" (click) = "btnEditClick()">Edit</button>
@@ -80,7 +80,10 @@
               </tr>
             </thead>
             <tbody>
-             
+              <tr *ngFor="let p of listaPredavanja">
+                <td>{{ p.id }}</td>
+                <td>{{ p.naziv }}</td>
+              </tr>
             </tbody>
           </table>
     </div>

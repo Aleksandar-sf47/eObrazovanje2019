@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NastavnikService } from 'src/app/services/nastavnik/nastavnik.service';
+import { Nastavnik } from 'src/app/model/nastavnik';
 
 @Component({
   selector: 'app-nastavnik-edit',
@@ -10,15 +11,13 @@ export class NastavnikEditComponent implements OnInit {
 
   @Input("id") id : number;
   @Output() eeEditNastavnik = new EventEmitter();
-  nastavnikDTO;
+  nastavnik;
   
   constructor(private nServ : NastavnikService) { }
 
   ngOnInit() {
     this.nServ.getNastavnik(this.id).subscribe(res=>{
-      console.log("Prosledjen nastavnik: ");
-      console.log(res);
-      this.nastavnikDTO= res;
+      this.nastavnik = res;
     });
   }
 
@@ -27,7 +26,7 @@ export class NastavnikEditComponent implements OnInit {
   }
 
   submit(){
-    this.nServ.putNastavnik(this.id, this.nastavnikDTO).subscribe(res=>{
+    this.nServ.putNastavnik(this.id, this.nastavnik).subscribe(res=>{
       console.log(res);
       this.eeEditNastavnik.emit();
     });

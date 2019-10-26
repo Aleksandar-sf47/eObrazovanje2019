@@ -9,9 +9,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let n of nastavnici" (click)="selectedNastavnik(n)">
-        <td>{{ n.ime }}</td>
-        <td>{{ n.prezime }}</td>
-        <td>{{ n.email }}</td>
+        <td>{{ n.getIme() }}</td>
+        <td>{{ n.getPrezime() }}</td>
+        <td>{{ n.getEmail() }}</td>
       </tr>
     </tbody>
   </table>

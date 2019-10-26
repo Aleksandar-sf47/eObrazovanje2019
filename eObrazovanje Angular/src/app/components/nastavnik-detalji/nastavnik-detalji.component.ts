@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NastavnikService } from 'src/app/services/nastavnik/nastavnik.service';
+import { Nastavnik } from 'src/app/model/nastavnik';
 
 @Component({
   selector: 'app-nastavnik-detalji',
@@ -10,8 +11,9 @@ import { NastavnikService } from 'src/app/services/nastavnik/nastavnik.service';
 export class NastavnikDetaljiComponent implements OnInit, OnChanges {
 
   private id : number;
-  nastavnik;
+  nastavnik : Nastavnik;
   btnEdit : boolean = false; //za otvaranje forme za edit
+  listaPredavanja = [];
 
   constructor(private route : ActivatedRoute, private nServ : NastavnikService) { }
 
@@ -20,8 +22,12 @@ export class NastavnikDetaljiComponent implements OnInit, OnChanges {
     console.log(this.id);
     this.nServ.getNastavnik(this.id).subscribe(res=>{
         console.log(res);
-        this.nastavnik = res;
+        this.nastavnik = new Nastavnik().deserializable(res);
     });
+    this.nServ.getListaPredavanja(this.id).subscribe(res=>{
+      this.listaPredavanja = res;
+    });
+
     
   }
 
@@ -30,7 +36,7 @@ export class NastavnikDetaljiComponent implements OnInit, OnChanges {
     console.log(this.id);
     this.nServ.getNastavnik(this.id).subscribe(res=>{
         console.log(res);
-        this.nastavnik = res;
+        this.nastavnik = new Nastavnik().deserializable(res);
     });
   }
 

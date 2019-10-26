@@ -92,4 +92,10 @@ public class PredmetController {
 		List<UcenikDTO> ucenici = pServ.getPredmetPohadjanja(id);
 		return new ResponseEntity<List<UcenikDTO>>(ucenici, HttpStatus.OK);
  	}
+	
+	@PostMapping("/{id}/pohadjanja")
+	public ResponseEntity<HttpStatus> postPohadjanja(@PathVariable(value="id") Long id, @RequestBody UcenikDTO ucenikDTO){
+		
+		return new ResponseEntity<HttpStatus>(HttpStatus.CREATED);
+	}
 }
