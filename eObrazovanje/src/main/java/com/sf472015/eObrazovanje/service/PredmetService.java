@@ -65,33 +65,7 @@ public class PredmetService implements PredmetServiceInterface {
 		p.setNaziv(pDTO.getNaziv());
 		return pRepo.save(p);
 	}
-	
-	public List<NastavnikDTO> getPredmetPredavanja(Long predmetId){
-		List<Predavanje> predavanja = predavanjeRepo.findByPredmetId(predmetId);
-		return predavanja.stream().map(P-> new NastavnikDTO(P.getNastavnik())).collect(Collectors.toList());
-	}
-	
-	public void createPredavanje(Long predmetId, NastavnikDTO nDTO){
-		Predmet p = pRepo.getOne(predmetId);
-		Nastavnik n = new Nastavnik(nDTO);
-		Predavanje predavanje = new Predavanje(new Long(hashCode()), n, p);
-		predavanjeRepo.save(predavanje);
-	}
-	
-	public void deletePredavanje(Long predmetId, Long nastavnikId) {
-		List<Predavanje> predavanja = predavanjeRepo.findByPredmetId(predmetId);
-		predavanja.forEach(P->{
-			if(P.getNastavnik().getId().equals(nastavnikId)) {
-				predavanjeRepo.delete(P);
-			}
-		});
-		
-	}
-	
-	public List<UcenikDTO> getPredmetPohadjanja(Long predmetId){
-		Pohadjanje p = pohadjanjeRepo.findByPredmetId(predmetId);
-		return p.getListaUcenika().stream().map(U -> new UcenikDTO(U)).collect(Collectors.toList());
-	}
+
 	
 	
 	

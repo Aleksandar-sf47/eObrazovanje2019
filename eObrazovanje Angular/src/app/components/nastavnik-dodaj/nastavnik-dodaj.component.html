@@ -1,35 +1,70 @@
 <div class="container">
   <h2>Nastavnik</h2>
   <div class="nameForm">
-      <label>ime</label><br/>
-      <input class="form-control" type="text" name="name" [(ngModel)] = "nastavnikDTO.ime"/> 
+    <label>ime</label><br />
+    <input
+      class="form-control"
+      type="text"
+      name="name"
+      [(ngModel)]="nastavnikDTO.ime"
+    />
   </div>
   <div class="subnameForm">
-      <label>prezime</label><br/>
-      <input class="form-control" type="text" name="subname" [(ngModel)] = "nastavnikDTO.prezime"/>
+    <label>prezime</label><br />
+    <input
+      class="form-control"
+      type="text"
+      name="subname"
+      [(ngModel)]="nastavnikDTO.prezime"
+    />
   </div>
   <div class="jmbgForm">
-      <label>jmbg</label><br/>
-      <input class="form-control" type="text" name="jmbg" [(ngModel)] = "nastavnikDTO.jmbg"/>
+    <label>jmbg</label><br />
+    <input
+      class="form-control"
+      type="text"
+      name="jmbg"
+      [(ngModel)]="nastavnikDTO.jmbg"
+    />
   </div>
   <div class="emailForm">
-      <label>email</label><br/>
-      <input class="form-control" type="text" name="email" [(ngModel)] = "nastavnikDTO.email"/>
+    <label>email</label><br />
+    <input
+      class="form-control"
+      type="text"
+      name="email"
+      [(ngModel)]="nastavnikDTO.email"
+    />
   </div>
   <div class="telefonForm">
-      <label>telefon</label><br/>
-      <input class="form-control" type="text" name="telefon" [(ngModel)] = "nastavnikDTO.telefon"/>
+    <label>telefon</label><br />
+    <input
+      class="form-control"
+      type="text"
+      name="telefon"
+      [(ngModel)]="nastavnikDTO.telefon"
+    />
   </div>
   <div class="usernameForm">
-      <label>korisnicko ime</label><br/>
-      <input class="form-control" type="text" name="username" [(ngModel)] = "nastavnikDTO.kIme"/>
+    <label>korisnicko ime</label><br />
+    <input
+      class="form-control"
+      type="text"
+      name="username"
+      [(ngModel)]="nastavnikDTO.korisnikDTO.korisnickoIme"
+    />
   </div>
   <div class="passwordForm">
-      <label>sifra</label><br/>
-      <input class="form-control" type="text" name="password" [(ngModel)] = "nastavnikDTO.sifra"/>
-  </div><br/>
+    <label>sifra</label><br />
+    <input
+      class="form-control"
+      type="text"
+      name="password"
+      [(ngModel)]="nastavnikDTO.korisnikDTO.sifra"
+    />
+  </div>
+  <br />
   <div class="buttonForm">
-      <button class="btn btn-success submitBtn" (click)="submit()">Submit</button>
-    </div>
-
+    <button class="btn btn-success submitBtn" (click)="submit()">Submit</button>
+  </div>
 </div>

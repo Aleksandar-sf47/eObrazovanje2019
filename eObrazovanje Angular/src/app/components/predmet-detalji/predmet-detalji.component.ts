@@ -58,7 +58,7 @@ export class PredmetDetaljiComponent implements OnInit, OnChanges {
       this.predavanjeDTO.nastavnik = this.nastavnikPredavanje
       this.predavanjeDTO.predmet = this.predmet;
       console.log(this.predavanjeDTO);
-      this.pServ.postPredavanje(this.predavanjeDTO).subscribe(res=>{
+      this.pServ.postPredavanje(this.predavanjeDTO.predmet.,this.predavanjeDTO).subscribe(res=>{
         console.log("Rezultat: " + res);
       
         document.getElementById('exampleModalCenter1').click();

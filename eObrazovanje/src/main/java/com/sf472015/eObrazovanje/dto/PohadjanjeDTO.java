@@ -1,6 +1,11 @@
 package com.sf472015.eObrazovanje.dto;
 
+
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.hibernate.engine.internal.Collections;
 
 import com.sf472015.eObrazovanje.model.Pohadjanje;
 import com.sf472015.eObrazovanje.model.Predmet;
@@ -9,8 +14,8 @@ import com.sf472015.eObrazovanje.model.Ucenik;
 public class PohadjanjeDTO {
 	
 	private Long id;
-	private Set<Ucenik> listaUcenika;
-	private Predmet predmet;
+	private List<UcenikDTO> listaUcenika;
+	private PredmetDTO predmet;
 	
 	public PohadjanjeDTO() {
 		super();
@@ -19,7 +24,8 @@ public class PohadjanjeDTO {
 	public PohadjanjeDTO(Pohadjanje p) {
 		super();
 		this.id = p.getId();
-		this.listaUcenika = p.getListaUcenika();
+		this.listaUcenika = p.getListaUcenika().stream().map(U-> new UcenikDTO(U)).collect(Collectors.toList());
+		this.predmet = new PredmetDTO(p.getPredmet());
 	
 	}
 
@@ -31,19 +37,19 @@ public class PohadjanjeDTO {
 		this.id = id;
 	}
 
-	public Set<Ucenik> getListaUcenika() {
+	public List<UcenikDTO> getListaUcenika() {
 		return listaUcenika;
 	}
 
-	public void setListaUcenika(Set<Ucenik> listaUcenika) {
+	public void setListaUcenika(List<UcenikDTO> listaUcenika) {
 		this.listaUcenika = listaUcenika;
 	}
 
-	public Predmet getPredmet() {
+	public PredmetDTO getPredmet() {
 		return predmet;
 	}
 
-	public void setPredmet(Predmet predmet) {
+	public void setPredmet(PredmetDTO predmet) {
 		this.predmet = predmet;
 	}
 	

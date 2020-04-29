@@ -66,6 +66,7 @@ public class NastavnikService implements NastavnikServiceInterface{
 	public Nastavnik save(NastavnikDTO nDTO) {
 		Set<Uloga> uloge = new HashSet<Uloga>();
 		Uloga u = uServ.getUlogaByName("NASTAVNIK");
+		this.logger.info("OVDE JE ULOGA : " + u.getUloga());
 		uloge.add(u);
 		nDTO.getKorisnikDTO().setListaUloga(uloge);
 		Korisnik k = kServ.save(nDTO.getKorisnikDTO());

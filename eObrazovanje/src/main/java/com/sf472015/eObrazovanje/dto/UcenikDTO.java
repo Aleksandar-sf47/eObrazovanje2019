@@ -31,7 +31,7 @@ public class UcenikDTO implements Serializable {
 		this.brojIndeksa = u.getBrojIndeksa();
 		this.ime = u.getIme();
 		this.prezime =u.getPrezime();
-		this.jmbg = u.getPrezime();
+		this.jmbg = u.getJmbg();
 		this.email = u.getEmail();
 		this.telefon = u.getTelefon();
 		this.novcanik = u.getNovcanik();
@@ -138,16 +138,18 @@ public class UcenikDTO implements Serializable {
 
 
 
-	public KorisnikDTO getKorisnik() {
+	public KorisnikDTO getKorisnikDTO() {
 		return korisnikDTO;
 	}
 
 
 
-	public void setKorisnik(KorisnikDTO korisnik) {
-		this.korisnikDTO = korisnik;
+	public void setKorisnikDTO(KorisnikDTO korisnikDTO) {
+		this.korisnikDTO = korisnikDTO;
 	}
-	
+
+
+
 	
 	
 	

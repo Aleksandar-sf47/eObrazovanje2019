@@ -1,42 +1,43 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class PredmetService {
-
   private API = "api/predmeti";
   private APIPredavanje = "api/predavanje";
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getPredmeti(): Observable<any> {
     return this.http.get(this.API);
   }
 
-  getPredmet(id) : Observable<any>{
+  getPredmet(id): Observable<any> {
     return this.http.get(this.API + "/" + id);
   }
 
-  postPredmet(PredmetDTO) : Observable<any>{
+  postPredmet(PredmetDTO): Observable<any> {
     return this.http.post(this.API, PredmetDTO);
   }
 
-  putPredmet(id ,PredmetDTO) : Observable<any>{
+  putPredmet(id, PredmetDTO): Observable<any> {
     return this.http.put(this.API + "/" + id, PredmetDTO);
   }
 
-  deletePredmet(id) : Observable<any>{
+  deletePredmet(id): Observable<any> {
     return this.http.delete(this.API + "/" + id);
   }
 
-
-  postPredavanje(PredavanjeDTO) : Observable<any>{
-    return this.http.post(this.APIPredavanje, PredavanjeDTO);
+  postPredavanje(predmetID, PredavanjeDTO): Observable<any> {
+    return this.http.post(
+      this.API + "/" + predmetID + "/predavanje",
+      PredavanjeDTO
+    );
   }
 
-  getPredavanje(id) : Observable<any>{
+  getPredavanje(id): Observable<any> {
     return this.http.get(this.API + "/" + id + "/predavanje");
   }
 }

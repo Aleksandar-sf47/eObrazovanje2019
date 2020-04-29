@@ -9,15 +9,24 @@
     </thead>
     <tbody>
       <tr *ngFor="let n of nastavnici" (click)="selectedNastavnik(n)">
-        <td>{{ n.getIme() }}</td>
-        <td>{{ n.getPrezime() }}</td>
-        <td>{{ n.getEmail() }}</td>
+        <td>{{ n.ime }}</td>
+        <td>{{ n.prezime }}</td>
+        <td>{{ n.email }}</td>
       </tr>
     </tbody>
   </table>
   <div></div>
-  <button class="btn btn-primary active" role="button" aria-pressed="true" (click)="showNastavnikDodaj()">Dodaj</button>
+  <button
+    class="btn btn-primary active"
+    role="button"
+    aria-pressed="true"
+    (click)="showNastavnikDodaj()"
+  >
+    Dodaj
+  </button>
 </div>
-<div *ngIf="nastavnikDodaj"> 
-  <app-nastavnik-dodaj (eeNewNastavnik)='newNastavnik($event)'></app-nastavnik-dodaj>
+<div *ngIf="nastavnikDodaj">
+  <app-nastavnik-dodaj
+    (eeNewNastavnik)="newNastavnik($event)"
+  ></app-nastavnik-dodaj>
 </div>

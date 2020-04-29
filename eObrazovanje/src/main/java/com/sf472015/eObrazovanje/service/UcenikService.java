@@ -1,5 +1,7 @@
 package com.sf472015.eObrazovanje.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -50,14 +52,14 @@ public class UcenikService  implements UcenikServiceInterface{
 
 	@Override
 	public Ucenik save(UcenikDTO uDTO) {
+		uDTO.setBrojIndeksa(getNewNumberOfIndex());
 		Set<Uloga> uloge = new HashSet<Uloga>();
 		Uloga u = uServ.getUlogaByName("STUDENT");
-		logger.info("------------------------" + u.getUloga());
 		uloge.add(u);
-		uDTO.getKorisnik().setListaUloga(uloge);
-		Korisnik k = kServ.save(uDTO.getKorisnik());
-		uDTO.setKorisnik(new KorisnikDTO(k));
-		encoder.encode(uDTO.getKorisnik().getSifra());
+		uDTO.getKorisnikDTO().setListaUloga(uloge);
+		Korisnik k = kServ.save(uDTO.getKorisnikDTO());
+		uDTO.setKorisnikDTO(new KorisnikDTO(k));
+		encoder.encode(uDTO.getKorisnikDTO().getSifra());
 		Ucenik ucenik = new Ucenik(uDTO); 
 		return uRepo.save(ucenik);
 	}
@@ -76,13 +78,24 @@ public class UcenikService  implements UcenikServiceInterface{
 		u.setPrezime(uDTO.getPrezime());
 		u.setJmbg(uDTO.getJmbg());
 		u.setEmail(uDTO.getEmail());
-		u.setTelefon(uDTO.getEmail());
-		u.getKorisnik().setKorisnickoIme(uDTO.getKorisnik().getKorisnickoIme());
-		u.getKorisnik().setSifra(uDTO.getKorisnik().getSifra());
+		u.setTelefon(uDTO.getTelefon());
+		u.getKorisnik().setKorisnickoIme(uDTO.getKorisnikDTO().getKorisnickoIme());
+		u.getKorisnik().setSifra(uDTO.getKorisnikDTO().getSifra());
 		u.setNovcanik(uDTO.getNovcanik());
 
 		return uRepo.save(u);
 		
+	}
+	
+	public String getNewNumberOfIndex() {
+		List<Ucenik> ucenici =  uRepo.findAll();
+		Ucenik u = ucenici.get(ucenici.size() -1);
+		
+		String stariBrojIndeksa = u.getBrojIndeksa().split("/")[0];
+		LocalDateTime now = LocalDateTime.now();
+		
+		
+		return new String(Integer.parseInt(stariBrojIndeksa)+ 1 + "/" + now.getYear());
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.sf472015.eObrazovanje.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -21,7 +22,7 @@ import com.sf472015.eObrazovanje.dto.UcenikDTO;
 import javax.persistence.GenerationType;
 
 @Entity
-@Table(name="ucenik")
+@Table(name="ucenici")
 public class Ucenik {
 	
 	@Id
@@ -53,11 +54,8 @@ public class Ucenik {
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="ucenik")
 	private Set<DokumentaStudenta> listaDokumenataStudenta;
 	
-	@ManyToMany
-	@JoinTable(name="listaPohadjanjaStudenta", 
-	joinColumns=@JoinColumn(name="ucenik_id"),
-	inverseJoinColumns=@JoinColumn(name="pohadjanje_id"))
-	private Set<Pohadjanje> listaPohadjanjaStudenta;
+	@ManyToMany(mappedBy = "listaUcenika")
+	private Set<Pohadjanje> listaPohadjanjaStudenta = new HashSet<Pohadjanje>();
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="ucenik")
 	private Set<PolaganjeIspita> listaPolaganjaStudenta;
@@ -106,7 +104,7 @@ public class Ucenik {
 		this.email = uDTO.getEmail();
 		this.telefon = uDTO.getTelefon();
 		this.novcanik = uDTO.getNovcanik();
-		this.korisnik = new Korisnik(uDTO.getKorisnik());
+		this.korisnik = new Korisnik(uDTO.getKorisnikDTO());
 		
 	}
 

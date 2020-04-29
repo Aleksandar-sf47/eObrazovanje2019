@@ -28,7 +28,7 @@ import com.sf472015.eObrazovanje.service.NastavnikService;
 
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "api/nastavnici")
 public class NastavnikController {
 	
